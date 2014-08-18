@@ -22,4 +22,4 @@ Read for details.
 VSplot was tested under 2005,2008,2010,2012,2013 visual studios.
 C# runtime is needed to run this plugin.
 
-Contact me at load2005@gmail.com for any problems,questions.
+Contact me at alex.koinas@gmail.com for any problems,questions.
