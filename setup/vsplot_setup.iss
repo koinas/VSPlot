@@ -24,6 +24,7 @@ AllowNoIcons=yes
 OutputBaseFilename=vsplot_v1
 Compression=lzma
 SolidCompression=yes
+LicenseFile = src\license.txt
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
