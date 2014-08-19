@@ -70,9 +70,9 @@ namespace bukachacha.vsplot
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(53, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(162, 20);
+            this.label4.Size = new System.Drawing.Size(174, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "load2005@gmail.com";
+            this.label4.Text = "alex.koinas@gmail.com";
             // 
             // About
             // 

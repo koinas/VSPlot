@@ -29,18 +29,12 @@ SolidCompression=yes
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "D:\dev\vsplot\setup\src\vsplot.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "D:\dev\vsplot\setup\src\Interop.tom.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\dev\vsplot\setup\src\README.txt"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "D:\dev\vsplot\setup\src\freetype6.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "D:\dev\vsplot\setup\src\FreeType-6.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\dev\vsplot\setup\src\pge.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "D:\dev\vsplot\setup\src\SciLexer.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "D:\dev\vsplot\setup\src\zlib1.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "D:\dev\vsplot\setup\src\Zlib.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\dev\vsplot\setup\src\data_types.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\dev\vsplot\setup\src\updateenv.bat"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\dev\vsplot\setup\src\demo\*"; DestDir: "{app}\demo";Flags:ignoreversion recursesubdirs
+Source: "src\vsplot.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\README.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\pge.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\data_types.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\updateenv.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "src\demo\*"; DestDir: "{app}\demo";Flags:ignoreversion recursesubdirs
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
