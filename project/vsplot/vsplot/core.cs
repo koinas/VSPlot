@@ -467,8 +467,8 @@ namespace core
 
     public class PGE_IO
     {
-        const string pge_path = "D:\\dev\\dlab\\pge\\debug\\pge.dll";
-        //const string pge_path = "pge.dll";
+        //const string pge_path = "D:\\dev\\dlab\\pge\\debug\\pge.dll";
+        const string pge_path = "pge.dll";
         [DllImport(pge_path)]
         public static extern int create_array_render(IntPtr handle);
         [DllImport(pge_path)]
