@@ -50,6 +50,7 @@ page:TInputOptionWizardPage;
 versions:array[0..4] of Integer;
 count:Integer;
 i:Integer;
+vs_install_path:String;
 const
 select_secondary = 'Installed Visual Studio versions:';
 select_caption = 'Add plugin to the following versions';
@@ -70,7 +71,7 @@ plugin_name = 'vsplot';
 function check_version():Boolean;
 begin
 versions[0]:= 0;versions[1]:= 0;versions[2]:= 0;versions[3]:= 0;count:=0; versions[4]:=0;
-if RegKeyExists(HKEY_CLASSES_ROOT,'VisualStudio.DTE.8.0') then versions[count]:=1;count:=count+1;begin page.Add('2005'); end;
+if RegKeyExists(HKEY_CLASSES_ROOT,'VisualStudio.DTE.8.0') then begin versions[count]:=1;count:=count+1;page.Add('2005'); end;
 if RegKeyExists(HKEY_CLASSES_ROOT,'VisualStudio.DTE.9.0') then begin versions[count]:=2;count:=count+1;page.Add('2008'); end;
 if RegKeyExists(HKEY_CLASSES_ROOT,'VisualStudio.DTE.10.0') then begin versions[count]:=3;count:=count+1;page.Add('2010');end;
 if RegKeyExists(HKEY_CLASSES_ROOT,'VisualStudio.DTE.11.0') then begin versions[count]:=4;count:=count+1;page.Add('2012');end;
@@ -110,7 +111,9 @@ MsgBox('Failed to add value InprocServer32',mbInformation,MB_OK);end;
 if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'Class','bukachacha.vsplot.vsplot') = False) then begin
 MsgBox('Failed to add value Class',mbInformation,MB_OK);end;
 
-if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'CodeBase','C:\\Program Files\\VSPlot\\vsplot.dll') = False) then begin
+//fix program files path C:\\Program Files\\VSPlot\\vsplot.dll
+
+if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'CodeBase',ExpandConstant('{app}') + '\vsplot.dll') = False) then begin
 MsgBox('Failed to add value Class',mbInformation,MB_OK);end;
 
 if(RegWriteDWordValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'ID',104) = False) then begin
@@ -140,9 +143,12 @@ if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Menus',plugin_g
 MsgBox('Failed to add value CodeBase',mbInformation,MB_OK);end;
 
 
+//detecting the visual studio install path
+if(RegQueryStringValue(HKEY_LOCAL_MACHINE,'SOFTWARE\Microsoft\VisualStudio\'+version,'InstallDir',vs_install_path) = False) then
+begin MsgBox('Failed to get VS installation path, Run devenv -setup manually',mbInformation,MB_OK);end;
 //running devenv /setup to update environment
 
-Exec('C:\Program Files\VSplot\updateenv.bat',studio_dir_name,'',SW_SHOW,ewWaitUntilTerminated,ResultCode);
+Exec(ExpandConstant('{app}') + '\updateenv.bat','"'+vs_install_path+'devenv.exe'+'"','',SW_SHOW,ewWaitUntilTerminated,ResultCode);
 
 end;
 
@@ -169,11 +175,11 @@ for i:=0 to (count-1) do
 begin
 if(page.Values[i] = True) then 
 begin 
-  if(versions[i] = 1)then begin MsgBox('2005',mbInformation,MB_OK);Register(studio_version_2005,'"Microsoft Visual Studio 8"');end;
-  if(versions[i] = 2)then begin MsgBox('2008',mbInformation,MB_OK);Register(studio_version_2008,'"Microsoft Visual Studio 9.0"');end;
-  if(versions[i] = 3)then begin MsgBox('2010',mbInformation,MB_OK);Register(studio_version_2010,'"Microsoft Visual Studio 10.0"');end;
-  if(versions[i] = 4)then begin MsgBox('2012',mbInformation,MB_OK);Register(studio_version_2012,'"Microsoft Visual Studio 11"');end;
-  if(versions[i] = 5)then begin MsgBox('2013',mbInformation,MB_OK);Register(studio_version_2013,'"Microsoft Visual Studio 12"');end;
+  if(versions[i] = 1)then begin MsgBox('2005',mbInformation,MB_OK);Register(studio_version_2005,'Microsoft Visual Studio 8');end;
+  if(versions[i] = 2)then begin MsgBox('2008',mbInformation,MB_OK);Register(studio_version_2008,'"Microsoft Visual Studio 9.0');end;
+  if(versions[i] = 3)then begin MsgBox('2010',mbInformation,MB_OK);Register(studio_version_2010,'Microsoft Visual Studio 10.0');end;
+  if(versions[i] = 4)then begin MsgBox('2012',mbInformation,MB_OK);Register(studio_version_2012,'Microsoft Visual Studio 11');end;
+  if(versions[i] = 5)then begin MsgBox('2013',mbInformation,MB_OK);Register(studio_version_2013,'Microsoft Visual Studio 12');end;
 end;
 end;
 end;

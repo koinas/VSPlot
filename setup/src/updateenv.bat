@@ -1,2 +1,3 @@
-"C:\Program Files\%~1\Common7\IDE\devenv.exe" -setup
+echo "PLEASE WAIT WHILE SETUP COMPLETES"
+"%~1" -setup
 PAUSE
