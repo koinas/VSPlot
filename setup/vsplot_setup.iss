@@ -61,6 +61,8 @@ studio_version_2010 = '10.0\';
 studio_version_2012 = '11.0\';
 studio_version_2013 = '12.0\';
 
+mscoree_path = 'C:\WINDOWS\system32\mscoree.dll';
+
 plugin_guid = '{8672e1d4-4dcd-4935-b491-478fe1a95b5c}';
 tool_guid = '{becf3777-4750-4ab5-b11f-8a18fa7b27f5}';
 plugin_autoload = '{f1536ef8-92ec-443c-9ed7-fdadf150da82}';
@@ -81,7 +83,7 @@ end;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-procedure Register(version:String;studio_dir_name:String);
+procedure RegisterVersion(version:String;studio_dir_name:String);
 var 
 ResultCode: Integer;
 begin
@@ -105,7 +107,7 @@ MsgBox('Failed to add value CodeBase',mbInformation,MB_OK);end;
 if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'','bukachacha.vsplot.vsplot, vsplot, Version=1.0.5003.23643, Culture=neutral, PublicKeyToken=e4b31acc0cb316c9') = False) then begin
 MsgBox('Failed to add value InprocServer32',mbInformation,MB_OK);end; 
 
-if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'InprocServer32','C:\\WINDOWS\\system32\\mscoree.dll') = False) then begin
+if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'InprocServer32',mscoree_path) = False) then begin
 MsgBox('Failed to add value InprocServer32',mbInformation,MB_OK);end;  
 
 if(RegWriteStringValue(HKEY_LOCAL_MACHINE,registry_path+version+'Packages\'+plugin_guid,'Class','bukachacha.vsplot.vsplot') = False) then begin
@@ -153,7 +155,7 @@ Exec(ExpandConstant('{app}') + '\updateenv.bat','"'+vs_install_path+'devenv.exe'
 end;
 
 
-procedure Unregister(version:String);
+procedure UnRegisterVersion(version:String);
 begin
 if(RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE,registry_path+version+'InstalledProducts\'+plugin_name) = False) then begin
 MsgBox('failed to remove key:' +registry_path+version+'InstalledProducts\'+plugin_name,mbInformation,MB_OK);end;
@@ -169,17 +171,17 @@ MsgBox('failed to remove key:' +registry_path+version+'ToolWindows\'+tool_guid,m
 end;
 
 ///////////////////////////////////////////////////////////////////////////////////////
-function RegisterPlugin:Boolean;
+function RegisterVersionPlugin:Boolean;
 begin
 for i:=0 to (count-1) do
 begin
 if(page.Values[i] = True) then 
 begin 
-  if(versions[i] = 1)then begin MsgBox('2005',mbInformation,MB_OK);Register(studio_version_2005,'Microsoft Visual Studio 8');end;
-  if(versions[i] = 2)then begin MsgBox('2008',mbInformation,MB_OK);Register(studio_version_2008,'"Microsoft Visual Studio 9.0');end;
-  if(versions[i] = 3)then begin MsgBox('2010',mbInformation,MB_OK);Register(studio_version_2010,'Microsoft Visual Studio 10.0');end;
-  if(versions[i] = 4)then begin MsgBox('2012',mbInformation,MB_OK);Register(studio_version_2012,'Microsoft Visual Studio 11');end;
-  if(versions[i] = 5)then begin MsgBox('2013',mbInformation,MB_OK);Register(studio_version_2013,'Microsoft Visual Studio 12');end;
+  if(versions[i] = 1)then begin MsgBox('2005',mbInformation,MB_OK);RegisterVersion(studio_version_2005,'Microsoft Visual Studio 8');end;
+  if(versions[i] = 2)then begin MsgBox('2008',mbInformation,MB_OK);RegisterVersion(studio_version_2008,'Microsoft Visual Studio 9.0');end;
+  if(versions[i] = 3)then begin MsgBox('2010',mbInformation,MB_OK);RegisterVersion(studio_version_2010,'Microsoft Visual Studio 10.0');end;
+  if(versions[i] = 4)then begin MsgBox('2012',mbInformation,MB_OK);RegisterVersion(studio_version_2012,'Microsoft Visual Studio 11');end;
+  if(versions[i] = 5)then begin MsgBox('2013',mbInformation,MB_OK);RegisterVersion(studio_version_2013,'Microsoft Visual Studio 12');end;
 end;
 end;
 end;
@@ -193,7 +195,7 @@ end;
 procedure CurStepChanged(CurStep:TSetupStep);
 begin
 if (CurStep = ssPostInstall) then begin
-RegisterPlugin();
+RegisterVersionPlugin();
 end; 
 end;
 
@@ -201,10 +203,10 @@ end;
 procedure CurUninstallStepChanged(CurStep:TUninstallStep);
 begin
 if(CurStep = usPostUninstall) then begin
-Unregister(studio_version_2005);
-Unregister(studio_version_2008);
-Unregister(studio_version_2010);
-Unregister(studio_version_2012);
-Unregister(studio_version_2013);
+UnRegisterVersion(studio_version_2005);
+UnRegisterVersion(studio_version_2008);
+UnRegisterVersion(studio_version_2010);
+UnRegisterVersion(studio_version_2012);
+UnRegisterVersion(studio_version_2013);
 end;
 end;
