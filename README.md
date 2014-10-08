@@ -1,6 +1,6 @@
 VSPlot is a package for Visual Studio to plot arrays in a separate window.
 
-The setup filer is in the "VSPlot/setup/Output/" directory.
+The setup file is in the "VSPlot/setup/Output/" directory.
 
 Make sure no Visual Studio is running.
 Run the setup and install choosing the appropriate Visual Studio version.
