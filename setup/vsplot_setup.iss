@@ -177,11 +177,11 @@ for i:=0 to (count-1) do
 begin
 if(page.Values[i] = True) then 
 begin 
-  if(versions[i] = 1)then begin MsgBox('2005',mbInformation,MB_OK);RegisterVersion(studio_version_2005,'Microsoft Visual Studio 8');end;
-  if(versions[i] = 2)then begin MsgBox('2008',mbInformation,MB_OK);RegisterVersion(studio_version_2008,'Microsoft Visual Studio 9.0');end;
-  if(versions[i] = 3)then begin MsgBox('2010',mbInformation,MB_OK);RegisterVersion(studio_version_2010,'Microsoft Visual Studio 10.0');end;
-  if(versions[i] = 4)then begin MsgBox('2012',mbInformation,MB_OK);RegisterVersion(studio_version_2012,'Microsoft Visual Studio 11');end;
-  if(versions[i] = 5)then begin MsgBox('2013',mbInformation,MB_OK);RegisterVersion(studio_version_2013,'Microsoft Visual Studio 12');end;
+  if(versions[i] = 1)then begin RegisterVersion(studio_version_2005,'Microsoft Visual Studio 8');end;
+  if(versions[i] = 2)then begin RegisterVersion(studio_version_2008,'Microsoft Visual Studio 9.0');end;
+  if(versions[i] = 3)then begin RegisterVersion(studio_version_2010,'Microsoft Visual Studio 10.0');end;
+  if(versions[i] = 4)then begin RegisterVersion(studio_version_2012,'Microsoft Visual Studio 11');end;
+  if(versions[i] = 5)then begin RegisterVersion(studio_version_2013,'Microsoft Visual Studio 12');end;
 end;
 end;
 end;
