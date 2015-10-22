@@ -103,10 +103,15 @@ namespace bukachacha.vsplot
                 CommandID toolwndCommandID = new CommandID(GuidList.guidvsplotCmdSet, (int)PkgCmdIDList.cmdidMyTool);
                 MenuCommand menuToolWin = new MenuCommand(new EventHandler(ShowToolWindow), toolwndCommandID);
                 mcs.AddCommand(menuToolWin);
+               
                 //Creating callback for NARISUJ command
                 CommandID DrawCommandID = new CommandID(GuidList.guidvsplotCmdSet, (int)PkgCmdIDList.cmdidWatch);
                 MenuCommand menuRisujWin = new MenuCommand(new EventHandler(RisujCallback), DrawCommandID);
                 mcs.AddCommand(menuRisujWin);
+
+                CommandID toolwndCommandID1 = new CommandID(GuidList.guidvsplotCmdSet, (int)PkgCmdIDList.cmdidMyTool1);
+                MenuCommand menuToolWin1 = new MenuCommand(new EventHandler(RisujCallback), toolwndCommandID1);
+                mcs.AddCommand(menuToolWin1);
             }
 
             // Add our command handlers for menu (commands must exist in the .ctc file)

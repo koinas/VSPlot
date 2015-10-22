@@ -286,6 +286,80 @@ namespace core
             return true;
         }
 
+        private void parse_watch_new(String input, ref StringBuilder name, ref StringBuilder value, ref StringBuilder type)
+        {
+            //This fuction extracts variable name and type from the Clipboard on CtrC command 
+            //on a selected item in the Watch window
+            //input looks like this
+            //            size	-858993460	const int\r
+            //\t as delimiters
+            //sometimes there is "" for char pointers so " is delimieter also
+            //space is also delimiter
+            //const int is a type
+            //size is variable name
+
+            OutputMessage("Input String: " + input);
+
+            int words = 0;
+            char delimiter = (char)(0x09);  // \t
+            char delimiter1 = (char)(0x22); //"
+            char delimiter2 = (char)(0x00); // space is not delimiter
+            char endline = '\r';
+            bool is_var_found = false;
+            
+            for (int i = 0; i < input.Length; ++i)
+            {
+                if (input[i] == endline) break;
+                if (((input[i] >= 'A') && (input[i] <= 'Z')) || ((input[i] >= 'a') && (input[i] <= 'z')) || ((input[i] >= '0') && (input[i] <= '9')) || (input[i]=='_'))
+                {
+                    if (is_var_found)
+                        name.Append(input[i]);
+                    else
+                    {
+                        name.Append(input[i]);
+                        is_var_found = true;
+                    }
+                }
+                else
+                {
+                    if (is_var_found) break;
+                }
+            }
+
+            //new feature
+            //trying to get address from debugger
+            DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
+            EnvDTE.Debugger dbg = dte.Debugger;
+            Expression exp = dbg.GetExpression(name.ToString(), false, 1000);
+            value.Append(exp.Value);
+            type.Append(exp.Type);
+
+            //also there must be numbers 
+            //like 0x01020304 {1.7800000}
+            //in vs1023
+            //removing averything except
+            //first 10 symbols
+            {
+                int value_length = value.Length;
+
+                value.Remove(10, value_length - 1 - 9);
+            }
+            //the type may contain [] like
+            //float[num]
+            //in this case we removing num]
+            //float [256] -> float [
+            int length = type.Length;
+            int idx = 0;
+            for (idx = 0; idx < length; ++idx)
+                if (type[idx] == '[') break;
+            if (idx != length)
+                type.Remove(idx + 1, length - idx - 1);
+
+            OutputMessage("Parse Result: " + name.ToString() + " " + value.ToString() + " " + type.ToString());
+
+            
+        }
+
          private void parse_watch(String input, ref StringBuilder name, ref StringBuilder value, ref StringBuilder type)
         {
             //This fuction extracts variable name and type from the Clipboard on CtrC command 
@@ -337,6 +411,14 @@ namespace core
 
             OutputMessage("Parse Result: " + name.ToString() + " " + value.ToString() + " " + type.ToString());
 
+             //new feature
+             //trying to get address from debugger
+            string var_name = "signal";
+            DTE dte = (DTE)Package.GetGlobalService(typeof(DTE));
+            EnvDTE.Debugger dbg = dte.Debugger;
+            Expression exp = dbg.GetExpression(var_name, false, 1000);
+            string v = exp.Value;
+            string t = exp.Type;
         }
 
         // void analyze_type(ref StringBuilder type,ref int is_signed
@@ -363,7 +445,8 @@ namespace core
             name = new StringBuilder();
             StringBuilder value = new StringBuilder();
             StringBuilder type = new StringBuilder();
-            parse_watch(unparsed, ref name, ref value, ref type);
+            //parse_watch(unparsed, ref name, ref value, ref type);
+            parse_watch_new(unparsed, ref name, ref value, ref type);
 
 
             try

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PlotParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <line_color_red>1</line_color_red>
+  <line_color_green>0</line_color_green>
+  <line_color_blue>0</line_color_blue>
+  <point_color_red>1</point_color_red>
+  <point_color_green>0</point_color_green>
+  <point_color_blue>0</point_color_blue>
+  <cross_color_red>0</cross_color_red>
+  <cross_color_green>0</cross_color_green>
+  <cross_color_blue>1</cross_color_blue>
+  <background_color_red>1</background_color_red>
+  <background_color_green>1</background_color_green>
+  <background_color_blue>1</background_color_blue>
+  <plot_type>2</plot_type>
+  <figure_size>12</figure_size>
+  <point_num>1024</point_num>
+</PlotParameters>

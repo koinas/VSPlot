@@ -156,4 +156,7 @@ void test_all()
 	float* normal_distribution = normal_dst<float>(2048,100,4096);
 	float* noise_data = noise<float>(100,1024);
 
+	float signal[256];
+	char* p = (char*)signal;
+
 }

@@ -9,6 +9,7 @@ namespace bukachacha.vsplot
 
         public const uint cmdidMyTool =    0x101;
         public const uint cmdidWatch = 0x103;
+        public const uint cmdidMyTool1 = 0x104;
 
     };
 }

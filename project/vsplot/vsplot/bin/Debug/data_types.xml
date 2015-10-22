@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+     This file contains a list of data types 
+	 which are recognised by VSPlot
+	 
+	 Types suppoprted are:
+	 
+	 signed/unsigned 1 byte integer
+	 signed/unsigned 2 byte integer
+	 signed/unsigned 4 byte integer
+	 4 byte float
+	 8 byte float
+	 
+	 
+	 bytes_per_point - specifies the ammount of bytes per point
+	 float_int : 
+						0x00 - integer data 
+						0x01 - float IEE754 format
+	 signed_unsigned : 
+						0x02 - signed type 
+						0x03 - unsigned
+	 
+	 for floating point data format signed_unsigned doesn't have any meaning
+	 
+	 <name> tag specifies how variable is represented in the Visual Studio Autos or Watch window
+	 The plugin analyzes the Type column of the Autos or Watch window.
+	 It can be "type *" for pointers or
+	 "type [num]" for arrays.
+	 Plugin removes "num]" part and searches this file to match the name.
+	 So we have two record for each type.
+
+-->
+<DataTypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DataType>
+    <name>float *</name>
+    <bytes_per_point>4</bytes_per_point>
+    <float_int>1</float_int>
+    <signed_unsigned>0</signed_unsigned>
+  </DataType>
+  <DataType>
+  <name>float [</name>
+    <bytes_per_point>4</bytes_per_point>
+    <float_int>1</float_int>
+    <signed_unsigned>0</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>double *</name>
+    <bytes_per_point>8</bytes_per_point>
+    <float_int>1</float_int>
+    <signed_unsigned>0</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>double [</name>
+    <bytes_per_point>8</bytes_per_point>
+    <float_int>1</float_int>
+    <signed_unsigned>0</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>unsigned char *</name>
+    <bytes_per_point>1</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>unsigned char [</name>
+    <bytes_per_point>1</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>char *</name>
+    <bytes_per_point>1</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>char [</name>
+    <bytes_per_point>1</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>unsigned short *</name>
+    <bytes_per_point>2</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>unsigned short [</name>
+    <bytes_per_point>2</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>short *</name>
+    <bytes_per_point>2</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>short [</name>
+    <bytes_per_point>2</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>int [</name>
+    <bytes_per_point>4</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>int *</name>
+    <bytes_per_point>4</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>unsigned int [</name>
+    <bytes_per_point>4</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>unsigned int *</name>
+    <bytes_per_point>4</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+    <DataType>
+    <name>unsigned __int64 *</name>
+    <bytes_per_point>8</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>unsigned __int64 [</name>
+    <bytes_per_point>8</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>3</signed_unsigned>
+  </DataType>
+   <DataType>
+    <name>__int64 *</name>
+    <bytes_per_point>8</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+  <DataType>
+    <name>__int64 [</name>
+    <bytes_per_point>8</bytes_per_point>
+    <float_int>0</float_int>
+    <signed_unsigned>2</signed_unsigned>
+  </DataType>
+ </DataTypes>

@@ -91,6 +91,8 @@ CMDS_SECTION guidvsplotPkg
 
     guidvsplotCmdSet:cmdidMyTool,    guidSHLMainMenu:IDG_VS_WNDO_OTRWNDWS1,    0x0100,        guidvsplotCmdSet:bmpPic2,    BUTTON,    ,            "Plot";
 	guidvsplotCmdSet:cmdidWatch,guidVSDebugGroup:0x000C,0x0100,guidvsplotCmdSet:bmpPic2,BUTTON, ,"PLOT";
+	//This integrates into DataTip, no use from that so :(
+	//guidvsplotCmdSet:cmdidMyTool1,    guidVSDebugGroup:0x0124,0x0600,guidvsplotCmdSet:bmpPic2,BUTTON,    ,"URA";
 
   BUTTONS_END
 
